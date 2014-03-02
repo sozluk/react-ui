@@ -1,0 +1,36 @@
+.searchBox {
+  padding: 17px;
+  font-family: sans-serif;
+  font-size: 15px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.searchBox > input {
+  font-size: 16px;
+  border: 1px solid #499a26;
+  padding: 17px 15px;
+  width: 100%;
+  border-radius: 2px;
+}
+
+.resultList {
+  padding: 0 20px;
+}
+
+div.result {
+  border-bottom: 1px solid #499a26;
+}
+
+div.result > h3 {
+  color: #499a26;
+}
+
+li {
+  color: #499a26;
+}
+
+li span {
+  color: black;
+}
