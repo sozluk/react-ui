@@ -48,8 +48,15 @@ var SearchBox = React.createClass({
     });
   },
   handleChange: function(comment) {
-    var query = this.refs.query.getDOMNode().value.trim();
-    this.loadResultsFromServer(query)
+    var self = this;
+    var query = self.refs.query.getDOMNode().value.trim();
+    //abort the previous load results call, if any
+    if(self.timeout) {
+      clearTimeout(self.timeout);
+    }
+    self.timeout = setTimeout(function() {
+      self.loadResultsFromServer(query);
+    }, 100);
   },
   getInitialState: function() {
     return {
