@@ -32,7 +32,11 @@ var ResultList = React.createClass({
 
 var SearchBox = React.createClass({
   loadResultsFromServer: function(query) {
-    $.ajax({
+    //abort the previous request, if any
+    if(this.request) {
+      this.request.abort();
+    }
+    this.request = $.ajax({
       url: 'http://sozluk.io:8080/ks',
       data: {
         q: query
