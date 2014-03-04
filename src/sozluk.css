@@ -23,6 +23,10 @@ div.result {
   border-bottom: 1px solid #499a26;
 }
 
+div.result:last-child {
+  border-bottom: none;
+}
+
 div.result > h3 {
   color: #499a26;
 }
@@ -33,4 +37,13 @@ li {
 
 li span {
   color: black;
+}
+
+a {
+  text-decoration: none;
+  color: #499a26;
+}
+
+a:hover {
+  text-decoration: underline;
 }

@@ -8,7 +8,7 @@ var Result = React.createClass({
     });
     return (
       <div className="result">
-        <h3>{this.props.word}</h3>
+        <h3><a href={"#" + encodeURIComponent(this.props.word)}>{this.props.word}</a></h3>
         <ul className="result">
           {meaningNodes}
         </ul>
@@ -31,6 +31,14 @@ var ResultList = React.createClass({
 });
 
 var SearchBox = React.createClass({
+  getHash: function() {
+    var hash = window.location.hash.substr(1);
+    if(hash && hash.length > 0) {
+      return decodeURIComponent(hash);
+    } else {
+      return '';
+    }
+  },
   loadResultsFromServer: function(query) {
     //abort the previous request, if any
     if(this.request) {
@@ -58,6 +66,17 @@ var SearchBox = React.createClass({
       self.loadResultsFromServer(query);
     }, 100);
   },
+  handleHashChange: function() {
+    var hash = this.getHash();
+    if(hash.length > 0) {
+      this.loadResultsFromServer(hash);
+      try {
+        var domNode = this.refs.query.getDOMNode();
+        domNode.value = hash;
+        domNode.focus();
+      } catch(ex) {}
+    }
+  },
   getInitialState: function() {
     return {
       hits: {
@@ -65,8 +84,14 @@ var SearchBox = React.createClass({
       }
     };
   },
+  componentWillMount: function(){
+    this.handleHashChange();
+  },
   componentDidMount: function() {
-    this.refs.query.getDOMNode().focus();
+    var domNode = this.refs.query.getDOMNode();
+    domNode.value = this.getHash();
+    domNode.focus();
+    window.addEventListener('hashchange', this.handleHashChange, false);
   },
   render: function() {
     return (
