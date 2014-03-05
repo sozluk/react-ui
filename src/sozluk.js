@@ -1,6 +1,51 @@
 /**
  * @jsx React.DOM
  */
+var Quote = React.createClass({
+  loadResultsFromServer: function(query) {
+    this.request = $.ajax({
+      url: 'http://sozluk.io:8080/qts',
+      data: {
+        q: query
+      },
+      dataType: 'json',
+      success: function(data) {
+        if (this.isMounted()) {
+          this.setState({hits: data.hits});
+        }
+      }.bind(this)
+    });
+  },
+  getInitialState: function() {
+    return {
+      hits: {
+        hits: []
+      }
+    };
+  },
+  componentWillReceiveProps: function(nextProps) {
+    this.loadResultsFromServer(nextProps.word);
+  },
+  componentWillUnmount: function() {
+    if(this.request) {
+      this.request.abort();
+    }
+  },
+  render: function() {
+    if(this.state.hits.hits.length > 0) {
+      return (
+        <blockquote>
+          {this.state.hits.hits[0]._source.v}
+          <br/>
+          <small>{this.state.hits.hits[0]._source.k}</small>
+        </blockquote>
+      );
+    } else {
+      return <span></span>;
+    }
+  }
+});
+
 var Result = React.createClass({
   render: function() {
     var meaningNodes = this.props.meanings.map(function (meaning) {
@@ -12,6 +57,7 @@ var Result = React.createClass({
         <ul className="result">
           {meaningNodes}
         </ul>
+        <Quote word={this.props.word} />
       </div>
     );
   }
