@@ -69,7 +69,7 @@ var ResultList = React.createClass({
       return <Result word={hit._source.k} meanings={hit._source.v}/>;
     });
     return (
-      <div className="resultList">
+      <div id="results">
         {resultNodes}
       </div>
     );
@@ -102,6 +102,7 @@ var SearchBox = React.createClass({
     });
   },
   handleChange: function(comment) {
+    $('body').addClass('press');
     var self = this;
     var query = self.refs.query.getDOMNode().value.trim();
     //abort the previous load results call, if any
@@ -141,8 +142,11 @@ var SearchBox = React.createClass({
   },
   render: function() {
     return (
-      <div className="searchBox">
-        <input type="text" placeholder="Aramak istediğin sözcüğü yaz" ref="query" autoFocus="true" autoComplete="off" onChange={this.handleChange} />
+      <div className="fenni">
+        <header>
+          <h1>Fenni <i>Sözlük</i></h1>
+          <input className="query" type="text" placeholder="Aramak istediğin sözcüğü yaz" ref="query" autoFocus="true" autoComplete="off" onChange={this.handleChange} />
+        </header>
         <ResultList hits={this.state.hits.hits} />
       </div>
     );

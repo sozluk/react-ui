@@ -1,24 +1,3 @@
-.searchBox {
-  padding: 17px;
-  font-family: sans-serif;
-  font-size: 15px;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.searchBox > input {
-  font-size: 16px;
-  border: 1px solid #499a26;
-  padding: 17px 15px;
-  width: 100%;
-  border-radius: 2px;
-}
-
-.resultList {
-  padding: 0 20px;
-}
-
 div.result {
   border-bottom: 1px solid #499a26;
 }
@@ -55,4 +34,130 @@ blockquote {
   line-height: 1.8;
   border-left: 5px solid #eee;
   padding-left: 1em;
+}
+
+.fenni {
+  width: 800px;
+  margin:0 auto;
+  margin-top: 10%;
+  padding:20px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all 0.1s linear 0s;
+  -moz-transition: all 0.1s linear 0s;
+  -o-transition: all 0.1s linear 0s;
+  transition: all 0.1s linear 0s;
+}
+
+.press .fenni {
+  padding:0;
+  margin-top:0;
+  width: 100%;
+}
+
+.press .fenni header {
+  overflow: hidden;
+  float: left;
+  width: 100%;
+  padding:20px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.fenni header h1 {
+  color: #499a26;
+}
+
+.fenni header h1 i {
+  font-style: normal;
+}
+
+.press .fenni h1 {
+  width: 20%;
+  float: left;
+  margin:12px 0;
+}
+
+.press .fenni input.query {
+  float: left;
+  width: 80%;
+}
+
+.press .fenni #results {
+  font-size: 15px;
+  overflow: hidden;
+  float: left;
+  width: 100%;
+  padding:10px 20px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+blockquote {
+  font-family: "Georgia", serif;
+  color: #666;
+  font-style: italic;
+  line-height: 1.8;
+  border-left: 5px solid #ddd;
+  padding-left: 1.5em;
+}
+
+input.query {
+  background-color:#fff;
+  color:#696969;
+  font-family: Arial;
+  font-size: 16px;
+  border:1px solid #ccc;
+  padding: 15px;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+input.query:focus {
+  outline: 0;
+  border: 1px solid #888888;
+}
+
+@media screen and (max-width:1070px)  {
+  .press .fenni h1{
+    font-size: 22px;
+    margin: 7px 0;
+  }
+  .press .fenni h1 i {
+    display: block;
+  }
+}
+
+@media screen and (max-width:800px)  {
+  .fenni {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width:512px)  {
+  .press .fenni h1{
+    width: 100%;
+  }
+  .press .fenni h1 i {
+    display: inline;
+  }
+  .press .fenni .search-form {
+    width: 100%;
+  }
+
+  .fenni {
+    margin-top:0;
+  }
+  .fenni h1 {
+    margin-top: 0;
+  }
 }
